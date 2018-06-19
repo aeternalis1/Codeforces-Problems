@@ -15,7 +15,7 @@ int main(){
     scanf("%lld",&nums[i]);
   }
   sort(nums,nums+k+2);
-  long long lo = 0, hi = t*2, pos = 0, res, mid, valid, lo2, hi2, mid2;
+  long long lo = 0, hi = t*2, pos = 0, res, mid, valid, cur;
   while (lo<hi){
     mid = (lo+hi)/2;
     res = 0;
@@ -25,15 +25,8 @@ int main(){
         valid = 0;
         break;
       }
-      lo2 = 0;
-      hi2 = nums[i]-nums[i-1];
-      while (lo2<hi2){
-        mid2 = (lo2+hi2)/2;
-        if (2*mid2+(nums[i]-nums[i-1]-mid2)<=mid) lo2 = mid2+1;
-        else hi2 = mid2;
-      }
-      if (lo2*2+(nums[i]-nums[i-1]-lo2)>mid) lo2--;
-      res += lo2+(nums[i]-nums[i-1]-lo2)*2;
+      cur = min(nums[i]-nums[i-1],mid-(nums[i]-nums[i-1]));
+      res += cur+(nums[i]-nums[i-1]-cur)*2;
     }
     if (res<=t&&valid){
       hi = mid;
