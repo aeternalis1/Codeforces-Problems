@@ -7,7 +7,7 @@ for i in range(1001):
     if not j:
       combs[i][j] = 1
     elif j:
-      combs[i][j] = combs[i-1][j]+combs[i-1][j-1]
+      combs[i][j] = (combs[i-1][j]+combs[i-1][j-1])%998244353
 for i in range(n-1,-1,-1):
   if nums[i] > 0 and nums[i]+i<n:
     dp[i] = combs[n-i-1][nums[i]]%998244353
